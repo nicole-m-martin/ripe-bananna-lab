@@ -76,6 +76,9 @@ describe('Reviewer routes', () => {
       })
   })
 
+
+  //add the reviews they made
+  //CANNOT DELETE IF THEY HAVE REVIEWS
   it('get an reviewer by id', async () => {
     const reviewer = await Reviewer.create({
       name: 'John Doe',

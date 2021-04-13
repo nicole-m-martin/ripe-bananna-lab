@@ -3,6 +3,8 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Actor = require('../lib/models/Actor');
+const Film = require('../lib/models/Film');
+const Cast = require('../lib/models/Cast');
 
 describe('Actor routes', () => {
   beforeEach(() => {
@@ -44,12 +46,26 @@ describe('Actor routes', () => {
       })
   })
 
+
+  //ADD A FILM 
   it('get an actor by id', async () => {
+    const film = await Film.create({
+      title: 'RIP Bananna',
+      released: 1984
+    });
+
     const actor = await Actor.create({
       name: 'John Doe',
       dob: '1980-06-17',
       pob: 'place of birth',
-    })
+    });
+
+    const cast = await Cast.create({
+      role: 'main',
+      FilmId: film.id,
+      ActorId: actor.id
+    });
+    console.log(cast, 'HLELOO WORLD')
     return request(app)
       .get(`/api/v1/actors/${actor.id}`)
       .then((res) => {

@@ -24,7 +24,6 @@ describe('Studio routes', () => {
       country: 'USA'
     });
 
-    console.log('RIGHT HERE', studio);
     return request(app)
       .get('/api/v1/studios')
       .then((res) => {
@@ -59,6 +58,9 @@ describe('Studio routes', () => {
       })
   })
 
+
+
+// ADD A FILM WITH ID AND TITLE HERE
   it('get an studio by id', async () => {
     const studio = await Studio.create({
       name: 'Jane Doe',
